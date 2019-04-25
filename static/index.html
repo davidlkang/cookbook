@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>title</title>
+    <style>
+        .item-flexcontainer{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: center;
+            align-content: stretch;
+        }
+        .item-flexitem{
+            flex: 1 1 auto;
+            align-self: auto;
+        }
+        .whitespace{
+            white-space: pre-wrap;
+        }
+        .no-click {
+            pointer-events: none;
+        }
+        .card .card-content p {
+            padding-bottom: 30px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+<body>
+    <div class="card">
+        <div class="card-content">
+            <div class="item-flexcontainer">
+                <div class="item-flexitem">
+                    <h4 class="whitespace">Bibimbap</h4>
+                    <p class="whitespace">koreanisches Gericht mit Gemüse, Rindfleisch und Reis</p>
+                    <p class="whitespace">
+1 Tasse 	Reis (Jasmin-Duftreis)
+1  	Zucchini, geschält
+4  	Karotte(n)
+6  	Pilze (Shiitake-)
+2 Handvoll 	Rotkohl
+1 Tasse 	Sojasprossen
+6  	Frühlingszwiebel(n)
+200 g 	Steak(s), vom Rind
+2  	Ei(er)
+2  	Knoblauchzehe(n)
+2 EL 	Sojasauce
+1 EL 	Sesamöl, dunkles
+1 EL 	Rohrzucker, braun
+1 TL 	Sesam, geröstet
+        Salz
+        Pfeffer
+        Öl (Erdnuss-)
+1 TL, gehäuft 	Sambal Oelek, oder Red Pepper Paste</p>
+                    <p class="whitespace">
+2 EL Sojasauce, 1 EL Sesamöl, 1 EL braunen Rohrzucker, 1 klein geschnittene Frühlingszwiebel, 1 TL Sesam, 1 fein gehackte Knoblauchzehe, Salz und Pfeffer gründlich vermengen. Das Fleisch in schmale Streifen schneiden und in die Marinade geben, damit es gut durchziehen kann. Beiseite stellen.
+Die Zucchini in dünne Scheiben schneiden. Den Rotkohl, die Pilze und die Möhren in sehr dünne Streifen schneiden. Die Sojabohnenkeimlinge waschen und gut abtropfen lassen. Die Frühlingszwiebeln in feine Ringe schneiden.
+Den Reis mit der 2-fachen Menge Wasser in einem großen Topf mit geschlossenem Deckel aufkochen. Sofort nach dem Aufkochen auf die niedrigste Stufe zurückschalten und ca. 15 Minuten quellen lassen. Dabei auf keinen Fall den Deckel abnehmen. Der Reis benötigt den Dampf zum Garen. Anschließend den Reis von der Herdplatte nehmen und mit einer Gabel auflockern.
+Den Backofen auf ca. 80 Grad vorheizen und eine ofenfeste Platte bereitstellen. In der Zwischenzeit eine geringe Menge Erdnussöl in einer beschichteten Pfanne erhitzen. Das Gemüse, die Pilze und die Keimlinge nacheinander jeweils 3-5 Minuten darin bei mittlerer Hitze braten. Jedes Gemüse etwas salzen, pfeffern und einen Teil des gehackten Knoblauchs dazugeben. Immer aus der Pfanne nehmen und nacheinander auf der Platte anrichten. Die Platte zum Warmhalten in den Backofen stellen.
+Währenddessen aus der Chilipaste und etwas Sojasoße eine Soße zubereiten.
+Die Eier in die Pfanne geben und zwei kleine Spiegeleier braten. Leicht salzen und ebenfalls auf die Platte im Backofen geben.
+Zum Schluss das Fleisch samt der Marinade in die Pfanne geben. Es darf nur ganz kurz gebraten werden, da es sonst schnell zäh wird.</p>
+                </div>
+                <div class="item-flexitem">
+                    <button class="right btn waves-effect waves-dark red darken-3">Edit</button>
+                    <button class="right btn waves-effect waves-dark red darken-3">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
