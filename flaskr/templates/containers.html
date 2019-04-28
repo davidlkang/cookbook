@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <script>
+        function isHidden(id, value){
+            document.getElementById(id).hidden = value
+        }
+    </script>
+    {% for recipe in recipes %}
+        <div class="card">
+            <div class="card-content">
+                <div class="item-flexcontainer">
+
+                    <div id="recipe-information" class="item-flexitem">
+                        <h4 class="whitespace">{{ recipe['name'] }}</h4>
+                        <p class="whitespace">{{ recipe['description'] }}</p>
+                        <div>
+                            <ul>
+                                {% for ingredient in recipe['ingredients']%}
+                                    <li>{{ ingredient['amount'] }} {{ ingredient['unit_name'] }} {{ ingredient['name'] }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <p class="whitespace">{{ recipe['recipe'] }}</p>
+                    </div>
+
+                    <div id="edit-forms" class="item-flexitem" hidden>
+                        <form action="{{ url_for('containers.edit', id=recipe['id']) }}" method="post">
+                            <div class="input-field">
+                                <textarea name="title-input" id="title-input" class="materialize-textarea">{{ recipe['name'] }}</textarea>
+                                <label for="title-input">Title</label>
+                            </div>
+                            <div class="input-field">
+                                <textarea name="description-input" id="desciption-input" class="materialize-textarea">{{ recipe['description'] }}</textarea>
+                                <label for="description-input">Description</label>
+                            </div>
+                            <div class="input-field">
+                                <textarea name="ingredients-input" id="ingredients-input" class="materialize-textarea">
+                                    {% for ingredient in recipe['ingredients']%}
+                                        {{ ingredient['amount'] }} {{ ingredient['unit_name'] }} {{ ingredient['name'] }}
+                                    {% endfor %}
+                                </textarea>
+                                <label for="ingredients-input">Ingredients</label>
+                            </div>
+                            <div class="input-field">
+                                <textarea type="text" name="recipe-input" id="recipe-input" class="materialize-textarea">{{ recipe['recipe'] }}</textarea>
+                                <label for="title-input">Recipe</label>
+                            </div>
+                            <button class="btn waves-effect waves-light cancel-button" type="button" onclick="isHidden('edit-forms', true); isHidden('recipe-information', false)">Cancel</button>
+                            <button class="btn waves-effect waves-light submit-button" type="submit">Submit</button>
+                        </form>
+                    </div>
+
+                    <div class="item-flexitem">
+                        <button class="btn waves-effect waves-dark red edit-button" type="button" onclick="isHidden('edit-forms', false); isHidden('recipe-information', true)">Edit</button>
+                        <form action="{{ url_for('containers.delete', id=recipe['id']) }}" method="post">
+                            <button class="btn waves-effect waves-dark red delete-button" type="submit" onclick="return confirm('Are you sure?');">Delete</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <button id="add-form-button" class="btn waves-effect waves-dark red add-button" onclick="isHidden('add-form', false); isHidden('add-form-button', true)">Add</button>
+    <div id="add-form" class="row card not-shown" hidden>
+        <div class="card-content">
+            <div class="col s6">
+                <form action="{{ url_for('containers.add') }}" method="post">
+                    <div class="input-field">
+                        <textarea name="title-input" id="title-input" class="materialize-textarea"></textarea>
+                        <label for="title-input">Title</label>
+                    </div>
+                    <div class="input-field">
+                        <textarea name="description-input" id="desciption-input" class="materialize-textarea"></textarea>
+                        <label for="description-input">Description</label>
+                    </div>
+                    <div class="input-field">
+                        <textarea name="ingredients-input" id="ingredients-input" class="materialize-textarea"></textarea>
+                        <label for="ingredients-input">Ingredients</label>
+                    </div>
+                    <div class="input-field">
+                        <textarea type="text" name="recipe-input" id="recipe-input" class="materialize-textarea"></textarea>
+                        <label for="title-input">Recipe</label>
+                    </div>
+                    <button class="btn waves-effect waves-light cancel-button" type="button" onclick="isHidden('add-form', true); isHidden('add-form-button', false)">Cancel</button>
+                    <button class="btn waves-effect waves-light submit-button" type="submit">Submit</button>
+                </form>
+                <!-- <button id="cancel-button" class="btn waves-effect waves-light">Cancel</button> -->
+            </div>
+        </div>
+    </div>
+{% endblock %}

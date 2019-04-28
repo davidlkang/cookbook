@@ -1,5 +1,6 @@
 import os
 from . import db
+from . import containers
 from flask import Flask
 
 
@@ -20,9 +21,8 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    @app.route('/')
-    def hello():
-        return 'Recipe App'
+    app.register_blueprint(containers.bp)
+    # app.add_url_rule('/hello', endpoint='containers')
 
     db.init_app(app)
 
