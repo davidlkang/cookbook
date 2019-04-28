@@ -39,10 +39,3 @@ def init_app(app):
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
 
-# def get_recipes():
-#     db = get_db()
-#     db_cursor = db.cursor()
-#     db_cursor.execute('SELECT * FROM recipes')
-#     recipes = db_cursor.fetchall()
-#     for recipe in recipes:
-

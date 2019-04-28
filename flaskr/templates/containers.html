@@ -46,13 +46,13 @@
                                 <textarea type="text" name="recipe-input" id="recipe-input" class="materialize-textarea">{{ recipe['recipe'] }}</textarea>
                                 <label for="title-input">Recipe</label>
                             </div>
-                            <button class="btn waves-effect waves-light cancel-button" type="button" onclick="isHidden('edit-forms', true); isHidden('recipe-information', false)">Cancel</button>
+                            <button class="btn waves-effect waves-light grey cancel-button" type="button" onclick="isHidden('edit-forms', true); isHidden('recipe-information', false)">Cancel</button>
                             <button class="btn waves-effect waves-light submit-button" type="submit">Submit</button>
                         </form>
                     </div>
 
                     <div class="item-flexitem">
-                        <button class="btn waves-effect waves-dark red edit-button" type="button" onclick="isHidden('edit-forms', false); isHidden('recipe-information', true)">Edit</button>
+                        <button class="btn waves-effect waves-dark edit-button" type="button" onclick="isHidden('edit-forms', false); isHidden('recipe-information', true)">Edit</button>
                         <form action="{{ url_for('containers.delete', id=recipe['id']) }}" method="post">
                             <button class="btn waves-effect waves-dark red delete-button" type="submit" onclick="return confirm('Are you sure?');">Delete</button>
                         </form>
@@ -62,7 +62,7 @@
             </div>
         </div>
     {% endfor %}
-    <button id="add-form-button" class="btn waves-effect waves-dark red add-button" onclick="isHidden('add-form', false); isHidden('add-form-button', true)">Add</button>
+    <button id="add-form-button" class="btn waves-effect waves-dark add-button" onclick="isHidden('add-form', false); isHidden('add-form-button', true)">Add</button>
     <div id="add-form" class="row card not-shown" hidden>
         <div class="card-content">
             <div class="col s6">
