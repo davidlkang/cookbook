@@ -40,19 +40,21 @@ def delete(id):
 
 @bp.route('/<int:id>/edit', methods=('POST',))
 def edit(id):
-    # db = get_db()
-    # db.execute('DELETE FROM recipes WHERE id = ?', (id,))
-    # db.execute('DELETE FROM recipes__ingredients WHERE recipe_id = ?', (id,))
-    # db.commit()
+    title = request.form['title-input']
+    description = request.form['description-input']
+    recipe = request.form['recipe-input']
+    db = get_db()
+    db.execute('UPDATE recipes SET name = ?, description = ?, recipe = ? WHERE id = ?', (title, description, recipe, id,))
+    db.commit()
     return redirect(url_for('containers.index'))
 
 
 @bp.route('/add', methods=('POST',))
 def add():
     title = request.form['title-input']
-    desciption = request.form['description-input']
+    description = request.form['description-input']
     recipe = request.form['recipe-input']
     db = get_db()
-    db.execute('INSERT INTO recipes (name, description, recipe) VALUES (?, ?, ?)', (title, desciption, recipe))
+    db.execute('INSERT INTO recipes (name, description, recipe) VALUES (?, ?, ?)', (title, description, recipe))
     db.commit()
     return redirect(url_for('containers.index'))
