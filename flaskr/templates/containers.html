@@ -4,6 +4,13 @@
     <script>
         function isHidden(id, value){
             document.getElementById(id).hidden = value
+
+        }
+        function jumpToBottom(){
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+        function setDynamicId(){
+
         }
     </script>
     {% for recipe in recipes %}
@@ -11,7 +18,7 @@
             <div class="card-content">
                 <div class="item-flexcontainer">
 
-                    <div id="recipe-information" class="item-flexitem">
+                    <div id="recipe-information-{{ recipe['id'] }}" class="item-flexitem">
                         <h4 class="whitespace">{{ recipe['name'] }}</h4>
                         <p class="whitespace">{{ recipe['description'] }}</p>
                         <div>
@@ -62,7 +69,7 @@
             </div>
         </div>
     {% endfor %}
-    <button id="add-form-button" class="btn waves-effect waves-dark add-button" onclick="isHidden('add-form', false); isHidden('add-form-button', true)">Add</button>
+    <button id="add-form-button" class="btn waves-effect waves-dark add-button" onclick="isHidden('add-form', false); isHidden('add-form-button', true); jumpToBottom()">Add</button>
     <div id="add-form" class="row card not-shown" hidden>
         <div class="card-content">
             <div class="col s6">
