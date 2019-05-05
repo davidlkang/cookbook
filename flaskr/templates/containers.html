@@ -4,7 +4,6 @@
     <script>
         function isHidden(id, value){
             document.getElementById(id).hidden = value
-
         }
         function jumpToBottom(){
             window.scrollTo(0, document.body.scrollHeight);
@@ -23,6 +22,7 @@
                         <p class="whitespace">{{ recipe['description'] }}</p>
                         <div>
                             <ul>
+                                <p class="list-title">Number of Ingredients: {{ recipe['number_of_ingredients'] }}</p>
                                 {% for ingredient in recipe['ingredients']%}
                                     <li>{{ ingredient['amount'] }} {{ ingredient['unit_name'] }} {{ ingredient['name'] }}</li>
                                 {% endfor %}
@@ -31,7 +31,7 @@
                         <p class="whitespace">{{ recipe['recipe'] }}</p>
                     </div>
 
-                    <div id="edit-forms" class="item-flexitem" hidden>
+                    <div id="edit-forms-{{ recipe['id'] }}" class="item-flexitem" hidden>
                         <form action="{{ url_for('containers.edit', id=recipe['id']) }}" method="post">
                             <div class="input-field">
                                 <textarea name="title-input" id="title-input" class="materialize-textarea">{{ recipe['name'] }}</textarea>
@@ -53,13 +53,13 @@
                                 <textarea type="text" name="recipe-input" id="recipe-input" class="materialize-textarea">{{ recipe['recipe'] }}</textarea>
                                 <label for="title-input">Recipe</label>
                             </div>
-                            <button class="btn waves-effect waves-light grey cancel-button" type="button" onclick="isHidden('edit-forms', true); isHidden('recipe-information', false)">Cancel</button>
+                            <button class="btn waves-effect waves-light grey cancel-button" type="button" onclick="isHidden('edit-forms-{{ recipe['id'] }}', true); isHidden('recipe-information-{{ recipe['id'] }}', false)">Cancel</button>
                             <button class="btn waves-effect waves-light submit-button" type="submit">Submit</button>
                         </form>
                     </div>
 
                     <div class="item-flexitem">
-                        <button class="btn waves-effect waves-dark edit-button" type="button" onclick="isHidden('edit-forms', false); isHidden('recipe-information', true)">Edit</button>
+                        <button class="btn waves-effect waves-dark edit-button" type="button" onclick="isHidden('edit-forms-{{ recipe['id'] }}', false); isHidden('recipe-information-{{ recipe['id'] }}', true)">Edit</button>
                         <form action="{{ url_for('containers.delete', id=recipe['id']) }}" method="post">
                             <button class="btn waves-effect waves-dark red delete-button" type="submit" onclick="return confirm('Are you sure?');">Delete</button>
                         </form>

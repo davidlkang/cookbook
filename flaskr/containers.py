@@ -11,7 +11,10 @@ bp = Blueprint('containers', __name__)
 def index():
     db = get_db()
     serialised_recipes = []
-    recipes = db.execute('SELECT * FROM recipes').fetchall()
+    recipes = db.execute('SELECT r.*, COUNT(r_i.ingredient_id) AS number_of_ingredients \
+                            FROM recipes r \
+                            LEFT JOIN recipes__ingredients r_i ON r_i.recipe_id=r.id \
+                            GROUP BY r.id;').fetchall()
     for recipe in recipes:
         serialised_recipe = {
             'name': recipe['name'],
@@ -23,7 +26,8 @@ def index():
                 INNER JOIN recipes r ON ri.recipe_id=r.id \
                 WHERE r.id=?', (recipe['id'], )).fetchall(),
             'recipe': recipe['recipe'],
-            'id': recipe['id']
+            'id': recipe['id'],
+            'number_of_ingredients': recipe['number_of_ingredients'],
         }
         serialised_recipes.append(serialised_recipe)
     return render_template('containers.html', recipes=serialised_recipes)
