@@ -25,3 +25,7 @@ CREATE TABLE recipes__ingredients (
   FOREIGN KEY (recipe_id) REFERENCES recipes (id),
   FOREIGN KEY (ingredient_id) REFERENCES ingredients (id)
 );
+
+CREATE INDEX idx_recipes__ingredients_recipe_id ON recipes__ingredients (recipe_id);
+
+CREATE INDEX idx_recipes__ingredients_ingredient_id ON recipes__ingredients (ingredient_id);
